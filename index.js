@@ -1,3 +1,5 @@
+// Importing packages
+
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
@@ -9,28 +11,29 @@ inquirer
   .prompt([
     {
       type: "input",
-      name: "projectTitle",
+      name: "title",
       message: "What is your project's title?",
     },
     {
       type: "input",
-      name: "location",
-      message: "Where are you from?",
+      name: "description",
+      message: "Write a short description about your project",
     },
     {
       type: "input",
-      name: "hobby",
-      message: "What is your favorite hobby?",
+      name: "installation",
+      message: "How do you install your project?",
     },
     {
       type: "input",
-      name: "food",
-      message: "What is your favorite food?",
+      name: "usage",
+      message: "How do you use it?",
     },
     {
-      type: "input",
-      name: "github",
-      message: "Enter your GitHub Username",
+      type: "list",
+      name: "license",
+      message: "What license does your project use?",
+      choices: ["MIT", "BSD", "GNU"],
     },
     {
       type: "input",
@@ -38,10 +41,12 @@ inquirer
       message: "Enter your LinkedIn URL.",
     },
   ])
+
   .then(function (answers) {
-    const html = generateMarkdown(answers);
-    return writeFileAsync("README.md", html);
+    const markdown = generateMarkdown(answers);
+    return writeFileAsync("README.md", markdown);
   })
+
   .then(function () {
     console.log("Successfully wrote to README.md");
   })
