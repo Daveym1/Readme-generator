@@ -7,6 +7,8 @@ const generateMarkdown = require("./utils/generateMarkdown");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
+// Questions
+
 inquirer
   .prompt([
     {
@@ -61,13 +63,19 @@ inquirer
     },
     {
       type: "input",
-      name: "credits",
-      message: "Who worked on the project? (separated by commas)",
+      name: "contributors",
+      message:
+        "Who worked on the project? (GitHub usernames separated by commas)",
+    },
+    {
+      type: "input",
+      name: "email",
+      message: "What's your Email address?",
     },
   ])
 
   .then(function (answers) {
-    const credits = answers.credits.split(",");
+    const contributors = answers.contributors.split(",");
     const markdown = generateMarkdown(answers);
     return writeFileAsync("README.md", markdown);
   })

@@ -36,7 +36,22 @@ function generateMarkdown(answers) {
 # ${answers.title}
 
 ${badge}
+
+
 `;
+
+  // Adds the github link for each contributor added
+
+  let contributorsLinks = [];
+
+  answers.contributors.split(",").forEach((contributor) => {
+    contributorsLinks.push(
+      `\t[${contributor.trim()}](https://github.com/${contributor.trim()})`
+    );
+  });
+
+  // defines the sections of the readme file
+
   let sections = {
     Description: answers.description,
     Installation: answers.installation,
@@ -44,12 +59,34 @@ ${badge}
     Features: answers.features,
     How_to_Contribute: answers.contribute,
     Tests: answers.testing,
-    Credits: answers.credits,
+    Questions: `If you have any further questions, please contact the team: \n- Who worked on the project: ${contributorsLinks.join()}\n- Email address: ${
+      answers.email
+    }`,
   };
+
+  // Checks the answers to the questions. If any are empty, section won't be added to file
+
   let headings = [];
-  sections = Object.entries(sections).filter(([key, value]) => value !== "");
+  sections = Object.entries(sections).filter(
+    ([key, value]) => value !== "" || key === "Questions"
+  );
+
   sections.forEach(([key, value]) => {
     headings.push(key);
+  });
+
+  //Adds the table of content with the headings needed
+
+  let toc = headings
+    .map(
+      (heading) =>
+        `- [${heading}](#${heading.toLowerCase().replace(/\s/g, "-")})`
+    )
+    .join("\n");
+
+  markdown += `## Table of Contents\n\n${toc}\n\n`;
+
+  sections.forEach(([key, value]) => {
     markdown += `
 
 ## ${key}
@@ -60,13 +97,6 @@ ${value}
 `;
   });
 
-  let toc = headings
-    .map(
-      (heading) =>
-        `- [${heading}](#${heading.toLowerCase().replace(/\s/g, "-")})`
-    )
-    .join("\n");
-
   markdown += `
   ## License
   
@@ -75,63 +105,10 @@ ${value}
   ----
   `;
 
-  markdown =
-    `# ${answers.title}\n\n${badge}\n\n## Table of Contents\n\n${toc}\n\n` +
-    markdown;
+  questions = `- Who worked on the project? (GitHub usernames separated by commas): ${answers.contributors}\n- What's your Email address?: ${answers.email}\n`;
+  sections.Questions = questions;
 
   return markdown;
 }
-
-//   return `
-// # ${answers.title}
-
-// ${badge}
-
-// ## Description
-
-// ${answers.description}
-
-// ----
-
-// ## Installation
-
-// ${answers.installation}
-
-// ----
-
-// ## Usage
-
-// ${answers.usage}
-
-// ----
-
-// ## License
-
-// This project is licensed under ${answers.license}
-
-// ----
-
-// ## Features
-
-// If your project has a lot of features, list them here.
-
-// ----
-
-// ## How to Contribute
-
-// If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-
-// ----
-
-// ## Tests
-
-// ----
-
-// ## Contact
-
-// LinkedIn: ${answers.linkedin}
-
-// `;
-// }
 
 module.exports = generateMarkdown;

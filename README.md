@@ -1,6 +1,8 @@
-# hjgjg
 
-[![License: GNU AGPLv3](https://img.shields.io/badge/License-AGPLv3-bluestyle=plastic)](https://opensource.org/licenses/agpl-3.0)
+# Readme Generator
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=plastic)](https://opensource.org/licenses/MIT)
+
 
 ## Table of Contents
 
@@ -10,65 +12,63 @@
 - [Features](#features)
 - [How_to_Contribute](#how_to_contribute)
 - [Tests](#tests)
-- [Credits](#credits)
+- [Questions](#questions)
 
-
-# hjgjg
-
-[![License: GNU AGPLv3](https://img.shields.io/badge/License-AGPLv3-bluestyle=plastic)](https://opensource.org/licenses/agpl-3.0)
 
 
 ## Description
 
-jhgjgf
+A command line app that asks a user a series of questions and then using the answers, creates a README.md file
 
 ----
 
 
 ## Installation
 
-jghf
+Simply run index.js with node
 
 ----
 
 
 ## Usage
 
-jgfgd
+Run index.js, answer the questions and you'll get a README.md file
 
 ----
 
 
 ## Features
 
-kgghf
+Uses inquirer.js to prompt the user with questions
 
 ----
 
 
 ## How_to_Contribute
 
-ghf
+Unknown
 
 ----
 
 
 ## Tests
 
-jhghg
+npm test
 
 ----
 
 
-## Credits
+## Questions
 
-kjhghgf
+If you have any further questions, please contact the team: 
+- Who worked on the project: 	[daveym1](https://github.com/daveym1)
+- Email address: davemarsh1@gmail.com
 
 ----
 
   ## License
   
-  This project is licensed under GNU AGPLv3
+  This project is licensed under MIT License
   
   ----
   
