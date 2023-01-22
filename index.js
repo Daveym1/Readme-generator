@@ -61,12 +61,13 @@ inquirer
     },
     {
       type: "input",
-      name: "linkedin",
-      message: "Enter your LinkedIn URL.",
+      name: "credits",
+      message: "Who worked on the project? (separated by commas)",
     },
   ])
 
   .then(function (answers) {
+    const credits = answers.credits.split(",");
     const markdown = generateMarkdown(answers);
     return writeFileAsync("README.md", markdown);
   })

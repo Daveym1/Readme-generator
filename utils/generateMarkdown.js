@@ -44,16 +44,41 @@ ${badge}
     Features: answers.features,
     How_to_Contribute: answers.contribute,
     Tests: answers.testing,
+    Credits: answers.credits,
   };
+  let headings = [];
   sections = Object.entries(sections).filter(([key, value]) => value !== "");
   sections.forEach(([key, value]) => {
+    headings.push(key);
     markdown += `
+
 ## ${key}
 
 ${value}
+
 ----
 `;
   });
+
+  let toc = headings
+    .map(
+      (heading) =>
+        `- [${heading}](#${heading.toLowerCase().replace(/\s/g, "-")})`
+    )
+    .join("\n");
+
+  markdown += `
+  ## License
+  
+  This project is licensed under ${answers.license}
+  
+  ----
+  `;
+
+  markdown =
+    `# ${answers.title}\n\n${badge}\n\n## Table of Contents\n\n${toc}\n\n` +
+    markdown;
+
   return markdown;
 }
 
