@@ -77,11 +77,11 @@ inquirer
   .then(function (answers) {
     const contributors = answers.contributors.split(",");
     const markdown = generateMarkdown(answers);
-    return writeFileAsync("README.md", markdown);
+    return writeFileAsync("sampleREADME.md", markdown);
   })
 
   .then(function () {
-    console.log("Successfully wrote to README.md");
+    console.log("Successfully wrote to sampleREADME.md");
   })
   .catch(function (err) {
     console.log(err);
